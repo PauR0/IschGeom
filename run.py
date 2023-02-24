@@ -9,8 +9,9 @@ import pyvista as pv
 import os
 import json
 from ischemia import opt
+from df_json import DEFAULT_JSON as dfj
 
-def run(opt, pl, save, sliders, dir_path, name):
+def run(opt, plot, save, sliders, dir_path, name):
     """
     Runs the ischemia simulation and saves the resulting mesh if specified.
 
@@ -29,7 +30,7 @@ def run(opt, pl, save, sliders, dir_path, name):
         name : str
             Name of the file where the mesh will be saved.
     """
-    p = plot_ischemia(opt, pl, sliders = sliders)
+    p = plot_ischemia(opt, plot, sliders)
     if save:
         save_geom(p, dir_path, name)
 
@@ -47,7 +48,11 @@ def save_geom(mesh, dir_path, name):
         name : str
             Name of the file where the mesh will be saved.
     """
+    if not os.path.exists(dir_path):
+        os.makedirs(dir_path)
+
     file_path = os.path.join(dir_path, name)
+    
     if os.path.exists(file_path):
         overwrite = input("The file already exists. Do you want to overwrite it? (yes/no)")
         if overwrite == "no":
@@ -58,14 +63,34 @@ def save_geom(mesh, dir_path, name):
          
     mesh.save(file_path)
 
+def read_json(dt, dfj):
+    """
+    Reads a JSON file and, if a value in the file is None, it is replaced by the corresponding value by default.
+
+    Args:
+        dt : dict
+            A dict with the values of the JSON file.
+        dfj : dict
+            A dict with the JSON default values.
+
+    Returns:
+        dict : 
+            The dictionary with updated values.
+    """
+    for key, value in dt.items():
+        if value == None:
+            dt[key] = dfj[key]
+    return dt
+
 
 if __name__  == '__main__':
-    json_file = r'C:\Users\Angela\Desktop\Universidad\Cuarto\Practicas\geometria\ischemic_regions\g1.json'
+    json_file = r'g1.json'
 
     if (os.path.exists(json_file)) and (os.path.getsize(json_file) > 0):
             with open(json_file, 'r') as f:
                 data = json.load(f)
+                data = read_json(data, dfj)
             run(data["opt"], data["plot"], data["save"], data["sliders"], data["dir_path"], data["name"])
     else:
-        run(opt, True, True, True, r'C:\Users\Angela\Desktop\Universidad\Cuarto\Practicas\geometria\ischemic_regions\geomsvtk', "geomi.vtk")
+        run(**dfj["opt"], dfj["plot"], dfj["save"], dfj["sliders"], dfj["dir_path"], dfj["name"])
         
