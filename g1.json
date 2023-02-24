@@ -1,0 +1,8 @@
+{
+ "opt" : "sin",
+ "save" : true,
+ "plot" : false,
+ "sliders" : true,
+ "dir_path" : "C:\\Users\\Angela\\Desktop\\Universidad\\Cuarto\\Practicas\\geometria\\ischemic_regions\\geomsvtk",
+ "name" : "geom2.vtk"
+}
