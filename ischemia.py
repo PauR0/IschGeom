@@ -1,12 +1,7 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Thu Feb 16 11:31:37 2023
-
-@author: Angela
-"""
 
 DEFAULT_OPTIONS_ISC = {
-    
+
     'norm' : {
     'mu1': {
         'value': 2,
@@ -49,7 +44,7 @@ DEFAULT_OPTIONS_ISC = {
         'title': 'Amplitud2'
     }
     },
-    
+
 
     'ellipse' : {
     'radio1': {
@@ -72,9 +67,9 @@ DEFAULT_OPTIONS_ISC = {
         'range': [0.01, 6],
         'title': 'Z Center'
     }
-    },     
-    
-    
+    },
+
+
     'cos' : {
     'min_lower': {
         'value': 2,
@@ -106,8 +101,8 @@ DEFAULT_OPTIONS_ISC = {
         'range': [0.01, 2],
         'title': 'Curv Upper'
     }
-     },     
-    
+     },
+
     'sin' : {
     'min_lower': {
         'value': 2,
@@ -139,8 +134,8 @@ DEFAULT_OPTIONS_ISC = {
         'range': [0.01, 2],
         'title': 'Curv Upper'
     }
-     },    
-    
+     },
+
      'hyperboloid':{
          'ycenter': {
          'value': 2,
@@ -189,7 +184,6 @@ DEFAULT_OPTIONS_ISC = {
          'range': [0.01, 6],
          'title': 'Z Center'
     }
-    
+
      }
 }
-

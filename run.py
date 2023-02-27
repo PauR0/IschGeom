@@ -1,10 +1,6 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Thu Feb 16 11:15:01 2023
 
-@author: Angela
-"""
-from plotischemia import plot_ischemia
+from plot_ischemia import plot_ischemia
 import os
 import json
 from df_json import DEFAULT_JSON as dfj
@@ -18,9 +14,9 @@ def run(opt, plot, save, sliders, dir_path, name):
         opt : str
             Type of geometry to use for the simulation.
         plot : bool
-            If True, displays the plot. 
+            If True, displays the plot.
         save : bool
-            If True, saves the mesh. 
+            If True, saves the mesh.
         sliders : bool
             If True, adds sliders to control the simulation parameters interactively.
         dir_path : str
@@ -33,7 +29,7 @@ def run(opt, plot, save, sliders, dir_path, name):
         save_geom(p, dir_path, name)
 
 
-def save_geom(mesh, dir_path, name): 
+def save_geom(mesh, dir_path, name):
     """
     Saves the mesh to a VTK file.
 
@@ -50,7 +46,7 @@ def save_geom(mesh, dir_path, name):
         os.makedirs(dir_path)
 
     file_path = os.path.join(dir_path, name)
-    
+
     if os.path.exists(file_path):
         overwrite = input("The file already exists. Do you want to overwrite it? (yes/no)")
         if overwrite == "no":
@@ -58,12 +54,12 @@ def save_geom(mesh, dir_path, name):
             while os.path.exists(os.path.join(dir_path, new_filename)):
                 new_filename = input("The file already exists. Enter another name:")
             file_path = os.path.join(dir_path, new_filename)
-         
+
     mesh.save(file_path)
 
 def read_json(dt, dfj):
     """
-    Reads a JSON file and, if a value in the file is None, 
+    Reads a JSON file and, if a value in the file is None,
     it is replaced by the corresponding value by default.
 
     Args:
@@ -73,7 +69,7 @@ def read_json(dt, dfj):
             A dict with the default values.
 
     Returns:
-        dict : 
+        dict :
             The dictionary with updated values.
     """
     for key, value in dt.items():
@@ -92,4 +88,3 @@ if __name__  == '__main__':
             run(**data)
     else:
         run(**dfj)
-        

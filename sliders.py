@@ -1,15 +1,10 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Thu Feb 16 11:53:18 2023
-
-@author: Angela
-"""
 
 from ischemia import DEFAULT_OPTIONS_ISC
-import plotischemia
+import plot_ischemia
 
 
-class SliderRoutine:  
+class SliderRoutine:
     def __init__(self, opt, mesh):
         KWARGS_ISC = {
         name: DEFAULT_OPTIONS_ISC[opt][name]['value'] for name in DEFAULT_OPTIONS_ISC[opt].keys()
@@ -22,12 +17,12 @@ class SliderRoutine:
         self.update(opt)
 
     def update(self, opt):
-        result = plotischemia.grid_updatter(opt, self.kwargs)
-        self.output.copy_from(result)  
+        result = plot_ischemia.grid_updatter(opt, self.kwargs)
+        self.output.copy_from(result)
 
 
 def add_sliders(opt, plotter, mesh):
-    """Create a set of slider widgets to control the parameters 
+    """Create a set of slider widgets to control the parameters
     depending on the ischemia zone.
 
     Args:
@@ -58,4 +53,3 @@ def add_sliders(opt, plotter, mesh):
         )
 
         i += 1
-        

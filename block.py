@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Thu Feb 16 11:17:22 2023
-
-@author: Angela
-"""
 
 DEFAULT_OPTIONS_BLOCK = {
     'sx': {
