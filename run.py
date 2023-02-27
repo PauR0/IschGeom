@@ -5,10 +5,8 @@ Created on Thu Feb 16 11:15:01 2023
 @author: Angela
 """
 from plotischemia import plot_ischemia
-import pyvista as pv
 import os
 import json
-from ischemia import opt
 from df_json import DEFAULT_JSON as dfj
 
 def run(opt, plot, save, sliders, dir_path, name):
@@ -65,13 +63,14 @@ def save_geom(mesh, dir_path, name):
 
 def read_json(dt, dfj):
     """
-    Reads a JSON file and, if a value in the file is None, it is replaced by the corresponding value by default.
+    Reads a JSON file and, if a value in the file is None, 
+    it is replaced by the corresponding value by default.
 
     Args:
         dt : dict
             A dict with the values of the JSON file.
         dfj : dict
-            A dict with the JSON default values.
+            A dict with the default values.
 
     Returns:
         dict : 
@@ -90,7 +89,7 @@ if __name__  == '__main__':
             with open(json_file, 'r') as f:
                 data = json.load(f)
                 data = read_json(data, dfj)
-            run(data["opt"], data["plot"], data["save"], data["sliders"], data["dir_path"], data["name"])
+            run(**data)
     else:
-        run(**dfj["opt"], dfj["plot"], dfj["save"], dfj["sliders"], dfj["dir_path"], dfj["name"])
+        run(**dfj)
         

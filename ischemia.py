@@ -5,8 +5,6 @@ Created on Thu Feb 16 11:31:37 2023
 @author: Angela
 """
 
-opt = 'ellipse'
-
 DEFAULT_OPTIONS_ISC = {
     
     'norm' : {

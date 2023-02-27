@@ -49,12 +49,14 @@ def create_grid_mesh(sx=DEFAULT_KWARGS_BLOCK['sx'], sy=DEFAULT_KWARGS_BLOCK['sy'
 
 def plot_block():
     """
-    Creates an empty plotter using PyVista and a 3D structured grid mesh using the create_grid_mesh function.
+    Creates an empty plotter using PyVista and a 3D structured grid mesh 
+    using the create_grid_mesh function.
     
     Returns:
     -------
         tuple(pv.StructuredGrid, pv.Plotter) :
-            A tuple containing the 'pyvista.StructuredGrid' object representing the mesh and the 'pyvista.Plotter' object used to plot it.
+            A tuple containing the 'pyvista.StructuredGrid' object representing 
+            the mesh and the 'pyvista.Plotter' object used to plot it.
     """
 
     plotter = pv.Plotter()

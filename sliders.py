@@ -27,7 +27,8 @@ class SliderRoutine:
 
 
 def add_sliders(opt, plotter, mesh):
-    """Create a set of slider widgets to control the parameters depending on the ischemia zone.
+    """Create a set of slider widgets to control the parameters 
+    depending on the ischemia zone.
 
     Args:
     ----

@@ -1,8 +1,8 @@
 {
- "opt" : "sin",
- "save" : true,
- "plot" : null,
+ "opt" : "ellipse",
+ "save" : false,
+ "plot" : true,
  "sliders" : true,
  "dir_path" : "geomsvtk",
- "name" : "geom2.vtk"
+ "name" : "geom1.vtk"
 }

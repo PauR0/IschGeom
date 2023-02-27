@@ -16,15 +16,15 @@ def get_ids(opt, points, d):
         opt : str
             Type of geometry to use for the simulation.
         points: np.ndarray
-            An array of shape (n, 3) containing the coordinates of each point in the mesh.
+            An array of shape (n,3) containing the coordinates of each point in the mesh.
         d: dict
             A dictionary with the ischemia parameters.
 
     Returns:
     -------
         np.ndarray : 
-            A boolean array of shape (n,) where True values indicate that the corresponding
-            point is within the ischemia zone.
+            A boolean array of shape (n,3) where True values indicate 
+            that the corresponding point is within the ischemia zone.
 
     """
     if opt == 'norm': 
@@ -102,7 +102,8 @@ def get_ids(opt, points, d):
 
 def get_scalars(opt, points, d):
     """
-    This function calculates the scalar values for each point in a mesh based on a given dictionary of ischemia zones.
+    This function calculates the scalar values for each point 
+    in a mesh based on a given dictionary of ischemia zones.
 
     Args:
     ----
@@ -116,8 +117,9 @@ def get_scalars(opt, points, d):
     Returns:
     -------
         numpy.ndarray : 
-        An array of shape (n,) containing the scalar values assigned to each point in the mesh. 
-        Points inside the ischemia zones are assigned a value of 1, while points outside the zones are assigned a value of 0.
+        An array of shape (n,3) containing the scalar values assigned to each point in the mesh. 
+        Points inside the ischemia zones are assigned a value of 1, 
+        while points outside the zones are assigned a value of 0.
     """
 
     scalars = np.zeros((points.shape[0],))
