@@ -3,6 +3,7 @@
 
 from copy import deepcopy
 import json
+import os
 
 default_run_json = {
     "metadata" : {
@@ -42,26 +43,29 @@ def read_json(file):
     return params
 #
 
-def get_json_reader(json_filename,template):
+def get_json_reader(json_filename, template):
 
     params = deepcopy(template)
     fname = json_filename
 
-    def read_json(path=None,abs_path=False):
+    def read_json(path=None, abs_path=False):
 
         new_params = deepcopy(params)
         try:
             if abs_path:
                 json_file = path
             else:
-                json_file = path + "/" + fname
+                json_file = os.path.join(path, fname)
 
             with open(json_file) as param_file:
                 read_params = json.load(param_file)
-                for k in read_params['metadata']:
-                    new_params['metadata'][k] = read_params['metadata'][k]
-                for k in read_params['data']:
-                    new_params['data'][k] = read_params['data'][k]
+
+            for k in read_params['metadata']:
+                new_params['metadata'][k] = read_params['metadata'][k]
+
+            for k in read_params['data']:
+                new_params['data'][k] = read_params['data'][k]
+
         except (FileNotFoundError,TypeError):
             pass
         #
