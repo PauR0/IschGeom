@@ -1,8 +1,15 @@
 {
- "opt" : "ellipse",
- "save" : false,
- "plot" : true,
- "sliders" : true,
- "dir_path" : "geomsvtk",
- "name" : "geom1.vtk"
+    "metadata" : {
+        "type" : "run",
+        "version" : 0.01
+    },
+
+    "data" : {
+        "opt" : "ellipse",
+        "save" : false,
+        "plot" : true,
+        "sliders" : true,
+        "dir_path" : "geomsvtk",
+        "name" : "geom1.vtk"
+    }
 }
