@@ -4,6 +4,14 @@
 from copy import deepcopy
 import json
 
+default_run_json = {"opt" : "norm",
+                    "save" : True,
+                    "plot" : True,
+                    "sliders" : True,
+                    "dir_path" : "geomsvtk",
+                    "name" : "geom.vtk"
+}
+
 
 def pretty_write(j,
                  f,
@@ -86,3 +94,10 @@ def get_json_writer(json_filename,template):
 
     return write_json
 #
+
+
+read_run_config_json = get_json_reader("run_config.json",
+                                        default_run_json)
+
+write_run_config_json = get_json_writer("run_config.json",
+                                          default_run_json)
