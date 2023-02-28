@@ -4,12 +4,19 @@
 from copy import deepcopy
 import json
 
-default_run_json = {"opt" : "norm",
-                    "save" : True,
-                    "plot" : True,
-                    "sliders" : True,
-                    "dir_path" : "geomsvtk",
-                    "name" : "geom.vtk"
+default_run_json = {
+    "metadata" : {
+        'type' : 'run',
+        'version' : 0.01
+    },
+    'data' :{
+        "opt" : "norm",
+        "save" : True,
+        "plot" : True,
+        "sliders" : True,
+        "dir_path" : "geomsvtk",
+        "name" : "geom.vtk"
+    }
 }
 
 
