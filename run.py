@@ -2,8 +2,7 @@
 
 from plot_ischemia import plot_ischemia
 import os
-import json
-from df_json import DEFAULT_JSON as dfj
+from config_files import read_run_config_json
 
 def run(opt, plot, save, sliders, dir_path, name):
     """
@@ -57,34 +56,9 @@ def save_geom(mesh, dir_path, name):
 
     mesh.save(file_path)
 
-def read_json(dt, dfj):
-    """
-    Reads a JSON file and, if a value in the file is None,
-    it is replaced by the corresponding value by default.
-
-    Args:
-        dt : dict
-            A dict with the values of the JSON file.
-        dfj : dict
-            A dict with the default values.
-
-    Returns:
-        dict :
-            The dictionary with updated values.
-    """
-    for key, value in dt.items():
-        if value == None:
-            dt[key] = dfj[key]
-    return dt
 
 
 if __name__  == '__main__':
-    json_file = r'g1.json'
 
-    if (os.path.exists(json_file)) and (os.path.getsize(json_file) > 0):
-            with open(json_file, 'r') as f:
-                data = json.load(f)
-                data = read_json(data, dfj)
-            run(**data)
-    else:
-        run(**dfj)
+    run_params = read_run_config_json(path=os.getcwd())['data']
+    run(**run_params)
