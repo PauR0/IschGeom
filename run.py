@@ -2,9 +2,10 @@
 
 from plot_ischemia import plot_ischemia
 import os
-from config_files import read_run_config_json
+import json
+from config_files import read_run_config_json, write_run_config_json
 
-def run(opt, plot, save, sliders, dir_path, name):
+def run(run_params):
     """
     Runs the ischemia simulation and saves the resulting mesh if specified.
 
@@ -23,12 +24,12 @@ def run(opt, plot, save, sliders, dir_path, name):
         name : str
             Name of the file where the mesh will be saved.
     """
-    p = plot_ischemia(opt, plot, sliders)
-    if save:
-        save_geom(p, dir_path, name)
+    p, upd_v = plot_ischemia(run_params['opt'], run_params['plot'], run_params['sliders'])
+    if run_params['save']:
+        save_geom(p, upd_v, run_params)
 
 
-def save_geom(mesh, dir_path, name):
+def save_geom(mesh, upd_v, run_params):
     """
     Saves the mesh to a VTK file.
 
@@ -41,24 +42,29 @@ def save_geom(mesh, dir_path, name):
         name : str
             Name of the file where the mesh will be saved.
     """
-    if not os.path.exists(dir_path):
-        os.makedirs(dir_path)
+    if not os.path.exists(run_params['save_dir']):
+        os.makedirs(run_params['save_dir'])
 
-    file_path = os.path.join(dir_path, name)
+    file_path = os.path.join(run_params['save_dir'], run_params['case_name'])
 
-    if os.path.exists(file_path):
-        overwrite = input("The file already exists. Do you want to overwrite it? (yes/no)")
+    if not os.path.exists(file_path):
+        os.makedirs(file_path)
+
+    elif os.path.exists(file_path):
+        overwrite = input("That save path already exists. Do you want to overwrite it? (yes/no)")
         if overwrite == "no":
-            new_filename = input("Enter the new file name:")
-            while os.path.exists(os.path.join(dir_path, new_filename)):
-                new_filename = input("The file already exists. Enter another name:")
-            file_path = os.path.join(dir_path, new_filename)
+            new_filename = input("Enter the new path name:")
+            while os.path.exists(os.path.join(run_params['save_dir'], new_filename)):
+                new_filename = input("That save path already exists. Enter another name:")
+            os.makedirs(os.path.join(run_params['save_dir'], new_filename))
+            file_path = os.path.join(run_params['save_dir'], new_filename)
+            run_params['case_name'] = new_filename
 
-    mesh.save(file_path)
-
+    mesh.save(os.path.join(file_path, "mesh.vtk"))
+    write_run_config_json(path=file_path, json_filename = "config.json", template = run_params)
+    write_run_config_json(path=file_path, json_filename = "mesh_config.json", template = upd_v)
 
 
 if __name__  == '__main__':
-
     run_params = read_run_config_json(path=os.getcwd())['data']
-    run(**run_params)
+    run(run_params)

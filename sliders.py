@@ -53,3 +53,6 @@ def add_sliders(opt, plotter, mesh):
         )
 
         i += 1
+    
+    updated_values = slider_engine.kwargs
+    return updated_values

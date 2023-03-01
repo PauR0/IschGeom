@@ -15,8 +15,8 @@ default_run_json = {
         "save" : True,
         "plot" : True,
         "sliders" : True,
-        "dir_path" : "geomsvtk",
-        "name" : "geom.vtk"
+        "save_dir" : "cases",
+        "case_name" : "caso0"
     }
 }
 
@@ -76,12 +76,12 @@ def get_json_reader(json_filename, template):
     return read_json
 #
 
-def get_json_writer(json_filename,template):
+def get_json_writer():
 
-    params = deepcopy(template)
-    fname = json_filename
+    def write_json(path,json_filename,template,data=None,abs_path=False):
 
-    def write_json(path,data=None,abs_path=False):
+        fname = json_filename
+        params = deepcopy(template)
 
         if abs_path:
             json_file = path
@@ -110,5 +110,4 @@ def get_json_writer(json_filename,template):
 read_run_config_json = get_json_reader("run_config.json",
                                         default_run_json)
 
-write_run_config_json = get_json_writer("run_config.json",
-                                          default_run_json)
+write_run_config_json = get_json_writer()

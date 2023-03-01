@@ -34,10 +34,10 @@ def plot_ischemia(opt, pl, sliders):
     plotter.add_mesh(grid_mesh, show_scalar_bar=False if sliders else True)
 
     if sliders:
-        add_sliders(opt, plotter, grid_mesh)
+        updated_values = add_sliders(opt, plotter, grid_mesh)
     if pl:
         plotter.show()
-    return grid_mesh
+    return grid_mesh, updated_values
 
 
 def grid_updatter(opt, d, sx=DEFAULT_KWARGS_BLOCK['sx'], sy=DEFAULT_KWARGS_BLOCK['sy'], sz=DEFAULT_KWARGS_BLOCK['sz'],

@@ -6,10 +6,10 @@
 
     "data" : {
         "opt" : "ellipse",
-        "save" : false,
+        "save" : true,
         "plot" : true,
         "sliders" : true,
-        "dir_path" : "geomsvtk",
-        "name" : "geom1.vtk"
+        "save_dir" : "cases",
+        "case_name" : "caso1"
     }
 }
